@@ -1,0 +1,30 @@
+version: "3"
+services:
+  label-studio:
+    image: heartexlabs/label-studio:latest
+    container_name: label-studio
+    ports:
+      - "8080:8080"
+    environment:
+      LABEL_STUDIO_USERNAME: "wasit@email.com"
+      LABEL_STUDIO_PASSWORD: "passwordqwer1234"
+      LABEL_STUDIO_USER_TOKEN: "OMG!@#$%"
+    volumes:
+      - ./label-studio/data:/label-studio/data
+    networks:
+      - label-net
+
+  image-server:
+    image: nginx:latest
+    container_name: image-server
+    ports:
+      - "8000:80"
+    volumes:
+      - ./image-server/dataset/images:/usr/share/nginx/html
+      - ./image-server/nginx.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - label-net
+
+networks:
+  label-net:
+    driver: bridge
