@@ -15,8 +15,10 @@ pip install myocr
 ## Train
 
 The demo notebook provide retrain process.
-Note that you need to run Label Studio before retaining.
+1. you need to run Label Studio before retaining.
 
 ```
 docker-compose up
 ```
+2. create task in the notebook
+3. your label tasks are in http://localhost:8080/
