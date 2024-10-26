@@ -19,7 +19,7 @@ class Project:
     def __init__ (self, project_name, my_class, clear_landing=False, clear_staging=True, clear_cropped=True):
         print('\nInitializing project:')
         # init project
-        lb_config={
+        self.lb_config={
             'project_name':project_name,
             'my_class':my_class,
             'LABEL_STUDIO_URL':'http://localhost:8080',
@@ -27,7 +27,7 @@ class Project:
             'API_KEY':'OMG!@#$%'
         }
         self.my_class = my_class
-        self.lb=LabelStudio(**lb_config)
+        
         
         # Path to the JSON file
         file_path = 'config.json'
@@ -89,6 +89,9 @@ class Project:
             }
             self.data_to_json(project_config,(self.project_dir/file_path))
             print('Now please load input image to landing')
+
+    def connect_label_studio(self):
+        self.lb=LabelStudio(**self.lb_config)
 
     def set_reference_image(self, ref_path='ref.png'):
         # reference_raw = cv2.imread(ref_path, cv2.IMREAD_GRAYSCALE)
@@ -309,9 +312,9 @@ class Project:
             df = pd.concat([df, x_df], axis=1)
             df['project_name']=p.project_name
     
-            df2=df[['project_name','image_file','sheet','choice']].copy()
+            df2=df[['project_name','image_file','sheet','question','choice']].copy()
             df2.loc[:,'PIL_image']=df2['image_file'].apply(lambda x:p.get_img(p.cropped_dir,x))
-            df2['image_url']=self.lb.IMAGE_SERVER_URL+self.project_name+'/'+df2['image_file']
+            df2['image_url']=self.lb_config['IMAGE_SERVER_URL']+self.project_name+'/'+df2['image_file']
             return df2
         except:
             raise Exception("Eror: unable create an input dataframe. please check your input images and cropping process.")
