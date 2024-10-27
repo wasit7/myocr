@@ -15,8 +15,8 @@ setup(
         'matplotlib==3.9.2',
         'pandas==2.2.3',
         'tqdm==4.66.5',
-        'torch==2.4.1+cpu',
-        'torchvision==0.19.1+cpu',
+        # 'torch==2.4.1+cpu',
+        # 'torchvision==0.19.1+cpu',
         'pandas==2.2.3',
         
     ],
