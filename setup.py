@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='myocr',
-    version='0.1.1',
+    version='0.1.3',
     packages=find_packages(),
     description='A sample myocr package',
     author='Your Name',
