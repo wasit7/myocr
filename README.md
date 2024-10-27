@@ -20,8 +20,10 @@ Please go to [notebooks](notebooks) and run demo.ipynb
 
 ![label studio](assets/label_studio.png){: width="50%"}
 The demo notebook provide retrain process.
-Note that you need to run Label Studio before retaining.
+1. you need to run Label Studio before retaining.
 
 ```
 docker-compose up
 ```
+2. create task in the notebook
+3. your label tasks are in http://localhost:8080/
